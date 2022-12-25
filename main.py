@@ -7,3 +7,4 @@ for a in range(1, 50):
             break
     if flag == 0:
         print(a)
+
