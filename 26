@@ -1,0 +1,47 @@
+#  коробочки, свободные ячейки кб 8512
+a = sorted([[int(x.split()[0]), int(x.split()[1])]for x in open('26_8512.txt').readlines()[2:]])
+k = 210
+boxes = [-1]*k
+count = 0
+last_start = -1
+last_nomer = -1
+for pas in a:
+    start = pas[0]
+    end = pas[1]
+
+    for i in range(k):
+        if boxes[i] <= start:
+            boxes[i] = end + 1
+            count +=1
+            if start > last_start:
+                last_start = start
+                last_nomer = i +1
+            break
+
+print(count, last_nomer)
+
+#  микроавтобусы, автобусы поляк 6406
+a = sorted([[int(x.split()[0]), int(x.split()[1])+int(x.split()[0]), x.split()[2]]for x in open('26-119.txt').readlines()[1:]])
+L = 85
+M = 33
+park  = [0]*(L+M)
+bus = 0
+ushel = 0
+for i in range(900):
+    priehal, end, tip = a[i]
+    if tip == 'A':
+        for j in range(L+M):
+            if park[j]<=priehal:
+                park[j] == end
+                break
+        else:
+            ushel+=1
+    if tip == 'B':
+        for j in range(L, L+M):
+            if park[j] <= priehal:
+                park[j] = end
+                bus+=1
+                break
+        else:
+            ushel +=1
+print(bus, ushel)
